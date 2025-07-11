@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: stg_customers
+    # description: "{{doc ('stg_customers')}}"
+    config:
+      materialized: table
+  - name: stg_order_items
+    # description: "{{doc ('stg_orders')}}"
+    config:
+      materialized: table
