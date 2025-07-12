@@ -2,10 +2,32 @@ version: 2
 
 models:
   - name: stg_customers
-    # description: "{{doc ('stg_customers')}}"
     config:
       materialized: table
+    columns:
+      - name: customer_id
+        tests:
+        - unique
+        - not_null
   - name: stg_order_items
-    # description: "{{doc ('stg_orders')}}"
     config:
       materialized: table
+    columns:
+      - name: order_item_id
+        tests:
+        - unique
+        - not_null
+  - name: stg_orders
+    config:
+      materialized: table
+    columns:
+    - name: order_id
+      tests:
+      - unique
+      - not_null
+  - name: stg_products
+    columns:
+      - name: product_id
+        tests:
+        - unique
+        - not_null
