@@ -6,13 +6,57 @@ sources:
     schema: jaffle
     tables:
       - name: customers
+        description: "{{doc('customers')}}"
+        columns:
+          - name: id
+            description: "{{doc('source_id')}}"
+          - name: name
+            description: "Name of the customer"
       - name: items
+        description: "{{doc('items')}}"
+        columns:
+          - name: id
+            description: "{{doc('source_id')}}"
+          - name: order_id
+            description: "Order ID"
+          - name: sku
+            description: "Product ID"
       - name: orders
+        description: "{{doc('orders')}}"
         config: 
           freshness:
             warn_after: {count: 12, period: hour}
             error_after: {count: 24, period: hour}
           loaded_at_field: ordered_at
+        columns:
+          - name: id
+            description: "{{doc('source_id')}}"
+          - name: customer_id
+            description: "ID of the customer"
+          - name: ordered_at
+            description: "Time the order was created"
+          - name: store_id
+            description: "Location of the store"
+          - name: subtotal
+            description: "Sub total amount of the order"	
+          - name: tax_paid
+            description: "Tax Paid for the order"	
+          - name: order_total
+            description: "Total amount of the order"				
       - name: products
-      - name: stores
-      - name: supplies
+        description: "{{doc('products')}}"
+        columns:
+          - name: sku
+            description: "{{doc('source_id')}}"
+          - name: name
+            description: "Name of the Product"
+          - name: type
+            description: "Product Type"
+          - name: price
+            description: "Price of the product"
+          - name: description
+            description: "Description of the product"
+          - name: update_at
+            description: "Last update time"
+      # - name: stores
+      # - name: supplies

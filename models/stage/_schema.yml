@@ -2,32 +2,63 @@ version: 2
 
 models:
   - name: stg_customers
-    config:
-      materialized: table
+    description: "Propagation  table from customer source table"
     columns:
       - name: customer_id
+        description: "{{doc('id')}}"
         tests:
         - unique
         - not_null
+      - name: customer_name
+        description: "Name of the customer"
+
   - name: stg_order_items
-    config:
-      materialized: table
+    description: "Propagation  table from item source table"
     columns:
       - name: order_item_id
+        description: "{{doc('id')}}"
         tests:
         - unique
         - not_null
+      - name: product_id
+        description: "SKU of the product"
+
   - name: stg_orders
-    config:
-      materialized: table
+    description: "Propagation  table from orders source table"
     columns:
     - name: order_id
+      description: "{{doc('id')}}"
       tests:
       - unique
       - not_null
+    - name: location_id
+      description: "Location of the store"
+    - name: customer_id
+      description: "Customer ID"
+    - name: order_total
+      description: "Total amount of the order"	
+    - name: tax_paid
+      description: "Tax Paid for the order"	  
+    - name: ordered_at
+      description: "Time the order was placed"	
+
   - name: stg_products
+    description: "Propagation  table from product` source table"
     columns:
       - name: product_id
+        description: "{{doc('id')}}"
         tests:
         - unique
         - not_null
+      - name: product_name
+        description: "Name of the Product"	
+      - name: product_type
+        description: "Type of the Product"	
+      - name: product_desc
+        description: "Description of the Product"	
+      - name: product_price
+        description: "Price of the Product"	
+      - name: is_food_item
+        description: "Food Item?"
+      - name: is_drink_item
+        description: "Drink Item?"
