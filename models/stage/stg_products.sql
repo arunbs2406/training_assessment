@@ -7,7 +7,8 @@ with products as
 		description as product_desc,
 		price/100 as product_price,
 		case when type = 'jaffle' then 1 else 0 end as is_food_item,
-		case when type = 'beverage' then 1 else 0 end as is_drink_item
+		case when type = 'beverage' then 1 else 0 end as is_drink_item,
+        update_at as updated_ts
     from {{ source("src", "products") }}
     )
 select *

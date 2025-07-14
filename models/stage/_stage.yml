@@ -2,6 +2,8 @@ version: 2
 
 models:
   - name: stg_customers
+    config:
+      group: Market
     description: "Propagation  table from customer source table"
     columns:
       - name: customer_id
@@ -14,17 +16,23 @@ models:
 
   - name: stg_order_items
     description: "Propagation  table from item source table"
+    config:
+      group: Finance
     columns:
       - name: order_item_id
         description: "{{doc('id')}}"
         tests:
         - unique
         - not_null
+      - name: order_id
+        description: "Order ID"
       - name: product_id
         description: "SKU of the product"
 
   - name: stg_orders
     description: "Propagation  table from orders source table"
+    config:
+      group: Finance
     columns:
     - name: order_id
       description: "{{doc('id')}}"
@@ -44,21 +52,45 @@ models:
 
   - name: stg_products
     description: "Propagation  table from product` source table"
+    config:
+      group: Market
+      contract:
+        enforced: true
     columns:
       - name: product_id
         description: "{{doc('id')}}"
+        data_type: string
+        constraints:
+          - type: not_null
         tests:
         - unique
         - not_null
       - name: product_name
-        description: "Name of the Product"	
+        description: "Name of the Product"
+        data_type: string
       - name: product_type
-        description: "Type of the Product"	
+        description: "Type of the Product"
+        data_type: string		
       - name: product_desc
-        description: "Description of the Product"	
+        description: "Description of the Product"
+        data_type: string		
       - name: product_price
-        description: "Price of the Product"	
+        description: "Price of the Product"
+        data_type: numeric(38,0)
       - name: is_food_item
         description: "Food Item?"
+        data_type: numeric(1,0)
       - name: is_drink_item
         description: "Drink Item?"
+        data_type: numeric(1,0)
+      - name: updated_ts
+        description: "Updated Timestamp"
+        data_type: timestamp
+
+groups:
+  - name: Market
+    owner: 
+      email: market@gmail.com
+  - name: Finance
+    owner: 
+      email: finance@gmail.com

@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: int_orders
+    description: "Incremental intermediate table from stg_orders and stg_order_items "
+    config:
+      materialized: 'incremental'
+      unique_key: ['order_item_id']
+    columns:
+      - name: order_item_id
+        description: "{{doc('id')}}"
+        tests:
+        - unique
+        - not_null
+      - name: order_id
+        description: "ID of the order"
+      - name: location_id
+        description: "Location of the store"
+      - name: customer_id
+        description: "Customer ID"
+      - name: product_id
+        description: "SKU of the product"
+      - name: order_total
+        description: "Total amount of the order"	
+      - name: tax_paid
+        description: "Tax Paid for the order"	  
+      - name: ordered_at
+        description: "Time the order was placed"	

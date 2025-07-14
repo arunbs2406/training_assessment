@@ -40,3 +40,6 @@ models:
     # Applies to all files under models/example/
     stage:
       +materialized: table
+
+vars:
+  order_after_date: '2017-08-25'
