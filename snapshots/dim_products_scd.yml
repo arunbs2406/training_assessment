@@ -1,0 +1,10 @@
+version: 2
+
+snapshots:
+ - name: products_scd
+   relation: ref('stg_products')
+   config:
+      schema: BUS
+      unique_key: product_id
+      strategy: timestamp
+      updated_at: updated_ts

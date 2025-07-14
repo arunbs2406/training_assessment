@@ -1,0 +1,4 @@
+version: 2
+data_tests:
+  - name: order_total_check
+    description: The order_total for each order_id should be greater than 4
