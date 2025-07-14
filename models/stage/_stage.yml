@@ -4,6 +4,7 @@ models:
   - name: stg_customers
     config:
       group: Market
+      access: public
     description: "Propagation  table from customer source table"
     columns:
       - name: customer_id
@@ -18,6 +19,7 @@ models:
     description: "Propagation  table from item source table"
     config:
       group: Finance
+      access: public
     columns:
       - name: order_item_id
         description: "{{doc('id')}}"
@@ -33,6 +35,7 @@ models:
     description: "Propagation  table from orders source table"
     config:
       group: Finance
+      access: public
     columns:
     - name: order_id
       description: "{{doc('id')}}"
@@ -54,6 +57,7 @@ models:
     description: "Propagation  table from product` source table"
     config:
       group: Market
+      access: public
       contract:
         enforced: true
     columns:
